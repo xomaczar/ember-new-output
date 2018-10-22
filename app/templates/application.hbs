@@ -1,5 +1,17 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
-
-{{outlet}}
+<div style="width: 300px; padding: 50px 20px;">
+  <p>Clear selection with backspace</p>
+  {{#paper-autocomplete
+    options=items
+    allowClear=true
+    searchText=(readonly searchText)
+    selected=country
+    placeholder="Select a Country..."
+    loadingMessage="Searching countries..."
+    noMatchesMessage="Oops this country doesn't exist. Create a new country?"
+    onSelectionChange=(action "selectionChanged") as |country ac| }}
+    {{paper-autocomplete-highlight
+      label=country
+      searchText=ac.searchText
+      flags="i"}}
+  {{/paper-autocomplete}}
+</div>
